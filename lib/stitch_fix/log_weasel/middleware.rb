@@ -38,8 +38,7 @@ module StitchFix
       return unless ENV.fetch('LOG_WEASEL_FROM_PARAMS', nil)
 
       req = Rack::Request.new(env)
-
-      req.params[PARAMS_KEY]
+      req.params.fetch(PARAMS_KEY, nil)
     end
   end
 end
