@@ -15,12 +15,7 @@ module StitchFix
     # Future: Maybe add X-Amzn-Trace-Id request header for tracing through load balancer
     # (http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-request-tracing.html)
     def call(env)
-      req = Rack::Request.new(env)
-      x_correlation_id = env.fetch(REQUEST_ID_KEY, nil) || env.fetch(CORRELATION_ID_KEY, nil)
-
-      if ENV.fetch('LOGWEASEL_FROM_PARAMS', nil) && req.params[PARAMS_KEY]
-        x_correlation_id = req.params[PARAMS_KEY]
-      end
+      x_correlation_id = env.fetch(REQUEST_ID_KEY, nil) || env.fetch(CORRELATION_ID_KEY, nil) || log_weasel_id_from_params(env)
 
       if x_correlation_id
         LogWeasel::Transaction.id = x_correlation_id
@@ -35,6 +30,16 @@ module StitchFix
       @app.call(env)
     ensure
       LogWeasel::Transaction.destroy
+    end
+
+    private
+
+    def log_weasel_id_from_params(env)
+      return unless ENV.fetch('LOG_WEASEL_FROM_PARAMS', nil)
+
+      req = Rack::Request.new(env)
+
+      req.params[PARAMS_KEY]
     end
   end
 end
