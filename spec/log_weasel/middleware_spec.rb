@@ -69,6 +69,22 @@ describe StitchFix::LogWeasel::Middleware do
         end
       end
 
+      context "when the log weasel id is included in the params" do
+        let(:env) do
+          Rack::MockRequest.env_for("something", params: { logweasel_id: 'foo' })
+        end
+
+        context "with the environment variable enabled" do
+          it "sets LogWeasel::Transation.id to the parameter value" do
+            allow(ENV).to receive(:fetch).with('LOGWEASEL_FROM_PARAMS', nil).and_return(true)
+
+            expect(StitchFix::LogWeasel::Transaction).to receive(:id=).with("foo")
+
+            StitchFix::LogWeasel::Middleware.new(app).call(env)
+          end
+        end
+      end
+
       context "ensure block" do
         let(:env) { {} }
 
