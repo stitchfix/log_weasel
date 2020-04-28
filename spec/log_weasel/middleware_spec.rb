@@ -94,6 +94,7 @@ describe StitchFix::LogWeasel::Middleware do
           it "does not set the log weasel id from the params" do
             allow(ENV).to receive(:fetch).with('LOG_WEASEL_FROM_PARAMS', nil).and_return(true)
 
+            # Let's pretend its a header...
             env['HTTP_X_REQUEST_ID'] = 'bar'
 
             expect(StitchFix::LogWeasel::Transaction).to receive(:id=).with("bar")
