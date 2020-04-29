@@ -75,12 +75,24 @@ describe StitchFix::LogWeasel::Middleware do
         end
 
         context "with the environment variable enabled" do
-          it "sets LogWeasel::Transation.id to the parameter value" do
+          it "sets LogWeasel::Transation.id to the header value" do
             allow(ENV).to receive(:fetch).with('LOG_WEASEL_FROM_PARAMS', nil).and_return(true)
 
-            expect(StitchFix::LogWeasel::Transaction).to receive(:id=).with("foo")
+            env['HTTP_X_REQUEST_ID'] = 'bar'
+
+            expect(StitchFix::LogWeasel::Transaction).to receive(:id=).with("bar")
 
             StitchFix::LogWeasel::Middleware.new(app).call(env)
+          end
+
+          context "also includes a header in the request" do
+            it "sets LogWeasel::Transation.id to the query string parameter value" do
+              allow(ENV).to receive(:fetch).with('LOG_WEASEL_FROM_PARAMS', nil).and_return(true)
+
+              expect(StitchFix::LogWeasel::Transaction).to receive(:id=).with("foo")
+
+              StitchFix::LogWeasel::Middleware.new(app).call(env)
+            end
           end
         end
       end
