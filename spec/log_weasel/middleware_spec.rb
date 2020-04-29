@@ -85,7 +85,7 @@ describe StitchFix::LogWeasel::Middleware do
             StitchFix::LogWeasel::Middleware.new(app).call(env)
           end
 
-          context "also includes a header in the request" do
+          context "a request without the log weasel headers" do
             it "sets LogWeasel::Transation.id to the query string parameter value" do
               allow(ENV).to receive(:fetch).with('LOG_WEASEL_FROM_PARAMS', nil).and_return(true)
 
