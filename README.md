@@ -187,6 +187,7 @@ and our resque log shows:
 
 Units of work initiated from Resque, for example if using a scheduler like <a href="https://github.com/bvandenbos/resque-scheduler">resque-scheduler</a>, will include 'RESQUE' in the transaction ID to indicate that the work started in Resque.
 
+
 ## LICENSE
 
 Copyright (c) 2011 Carbon Five. See LICENSE for details.
