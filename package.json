@@ -10,7 +10,8 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "src/stitch_fix/generateId.js"
+    "src/stitch_fix/generateId.js",
+    "src/stitch_fix/generateId.d.ts"
   ],
   "scripts": {
     "clean": "rm build/app.js",
