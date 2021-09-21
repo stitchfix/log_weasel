@@ -1,4 +1,4 @@
-# DO NOT MODIFY - this is managed by Git Reduce in goro
+# DO NOT MODIFY - this is managed by Git Reduce in goro and generated from build-matrix.json
 #
 ---
 version: 2
@@ -213,7 +213,7 @@ workflows:
         filters:
           branches:
             only:
-            - master
+            - main
     jobs:
     - ruby-3.0.2-rails-6.1:
         context: org-global
