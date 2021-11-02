@@ -14,8 +14,8 @@
 
 ### After Merging
 
-See the [gem release process](https://github.com/stitchfix/eng-wiki/blob/master/technical-topics/updating-gem-versions.md) for a detailed list, but the gist of it is:
+See the [gem release process](https://github.com/stitchfix/eng-wiki/blob/main/technical-topics/updating-gem-versions.md) for a detailed list, but the gist of it is:
 
-- [ ] Fetch `master` locally and run the applicable `rake version:*` task **on `master`** to bump the version
-- [ ] Run `rake release` **on `master`** to release the new version on Gemfury
+- [ ] Fetch `main` locally and run the applicable `rake version:*` task **on `main`** to bump the version
+- [ ] Run `rake release` **on `main`** to release the new version
 - [ ] Add [release notes](https://github.com/stitchfix/log_weasel/releases) - **this is very important in helping other engineers understand what changed in the new version**
