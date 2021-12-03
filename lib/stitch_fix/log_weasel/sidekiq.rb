@@ -4,6 +4,20 @@ module StitchFix
   module LogWeasel::Sidekiq
     LOG_WEASEL_CONTEXT_KEY = "log_weasel_id"
 
+    def self.initialize!
+      Sidekiq.configure_client do |sidekiq|
+        sidekiq.client_middleware do |chain|
+          chain.add ClientMiddleware
+        end
+      end
+
+      Sidekiq.configure_server do |sidekiq|
+        sidekiq.server_middleware do |chain|
+          chain.add ServerMiddleware
+        end
+      end
+    end
+
     def self.transaction_key
       LogWeasel.config.key ? "#{LogWeasel.config.key}-SIDEKIQ" : "SIDEKIQ"
     end

@@ -49,6 +49,10 @@ module StitchFix
 
         StitchFix::LogWeasel::ResqueScheduler.initialize!
       end
+
+      if defined? ::Sidekiq
+        StitchFix::LogWeasel::Sidekiq.initialize!
+      end
     end
   end
 end
