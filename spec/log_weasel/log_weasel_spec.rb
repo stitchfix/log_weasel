@@ -17,6 +17,7 @@ describe StitchFix::LogWeasel do
       expect(StitchFix::LogWeasel::Pwwka).to receive(:initialize!)
       expect(StitchFix::LogWeasel::Resque).to receive(:initialize!)
       expect(StitchFix::LogWeasel::ResqueScheduler).to receive(:initialize!)
+      expect(StitchFix::LogWeasel::Sidekiq).to receive(:initialize!)
       StitchFix::LogWeasel.configure {}
     end
   end
