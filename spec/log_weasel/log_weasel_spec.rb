@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-require 'pwwka'
+require 'stitch_fix/messaging'
 require 'resque'
 require 'stitch_fix/log_weasel'
 
