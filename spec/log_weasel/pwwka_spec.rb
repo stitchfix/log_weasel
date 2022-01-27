@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-require 'stitch_fix/messaging'
+require 'pwwka'
 
 describe StitchFix::LogWeasel::Pwwka do
 

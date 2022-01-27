@@ -1,6 +1,6 @@
 # vim:fileencoding=utf-8
 
-require 'stitch_fix/messaging'
+require 'pwwka/tasks'
 require 'resque/tasks'
 require 'resque/scheduler/tasks'
 
