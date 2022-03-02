@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency('activesupport')
   s.add_dependency('ulid')
 
-  s.files         = `git ls-files`.split("\n")
+  s.files         = `git ls-files`.split("\n").filter { |f| !f.start_with?("src") }
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
