@@ -11,55 +11,55 @@ describe StitchFix::LogWeasel::Transaction do
     end
   end
 
-  describe ".scope" do
+  describe ".key" do
     context "no transaction set" do
       it "is nil" do
-        expect(StitchFix::LogWeasel::Transaction.scope).to be_nil
+        expect(StitchFix::LogWeasel::Transaction.key).to be_nil
       end
     end
 
     context "transaction set with ULID" do
-      context "includes a scope" do
-        let(:scope) { "TEST-SCOPE" }
+      context "includes a key" do
+        let(:key) { "TEST-KEY" }
         before do
-          StitchFix::LogWeasel::Transaction.create scope
+          StitchFix::LogWeasel::Transaction.create key
         end
 
-        it "returns the proper scope" do
-          expect(StitchFix::LogWeasel::Transaction.scope).to eq scope.downcase
+        it "returns the proper key" do
+          expect(StitchFix::LogWeasel::Transaction.key).to eq key.downcase
         end
       end
 
-      context "does not include a scope" do
+      context "does not include a key" do
         before do
           StitchFix::LogWeasel::Transaction.create
         end
 
         it "is nil" do
-          expect(StitchFix::LogWeasel::Transaction.scope).to be_nil
+          expect(StitchFix::LogWeasel::Transaction.key).to be_nil
         end
       end
     end
 
     context "transaction set with UUID" do
-      context "includes a scope" do
-        let(:scope) { "TEST-SCOPE" }
+      context "includes a key" do
+        let(:key) { "TEST-KEY" }
         before do
-          StitchFix::LogWeasel::Transaction.id = "00660D68-3BFC-4E44-8DBD-66B0A878686A-#{scope}"
+          StitchFix::LogWeasel::Transaction.id = "00660D68-3BFC-4E44-8DBD-66B0A878686A-#{key}"
         end
 
-        it "returns the proper scope" do
-          expect(StitchFix::LogWeasel::Transaction.scope).to eq scope.downcase
+        it "returns the proper key" do
+          expect(StitchFix::LogWeasel::Transaction.key).to eq key.downcase
         end
       end
 
-      context "does not include a scope" do
+      context "does not include a key" do
         before do
           StitchFix::LogWeasel::Transaction.id = "00660D68-3BFC-4E44-8DBD-66B0A878686A"
         end
 
         it "is nil" do
-          expect(StitchFix::LogWeasel::Transaction.scope).to be_nil
+          expect(StitchFix::LogWeasel::Transaction.key).to be_nil
         end
       end
     end
