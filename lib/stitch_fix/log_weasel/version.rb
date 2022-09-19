@@ -1,5 +1,5 @@
 module StitchFix
   module LogWeasel
-    VERSION = "1.10.0.RC"
+    VERSION = "1.9.1"
   end
 end
