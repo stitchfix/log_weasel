@@ -11,6 +11,60 @@ describe StitchFix::LogWeasel::Transaction do
     end
   end
 
+  describe ".key" do
+    context "no transaction set" do
+      it "is nil" do
+        expect(StitchFix::LogWeasel::Transaction.key).to be_nil
+      end
+    end
+
+    context "transaction set with ULID" do
+      context "includes a key" do
+        let(:key) { "TEST-KEY" }
+        before do
+          StitchFix::LogWeasel::Transaction.create key
+        end
+
+        it "returns the proper key" do
+          expect(StitchFix::LogWeasel::Transaction.key).to eq key.downcase
+        end
+      end
+
+      context "does not include a key" do
+        before do
+          StitchFix::LogWeasel::Transaction.create
+        end
+
+        it "is nil" do
+          expect(StitchFix::LogWeasel::Transaction.key).to be_nil
+        end
+      end
+    end
+
+    context "transaction set with UUID" do
+      context "includes a key" do
+        let(:key) { "TEST-KEY" }
+        before do
+          StitchFix::LogWeasel::Transaction.id = "00660D68-3BFC-4E44-8DBD-66B0A878686A-#{key}"
+        end
+
+        it "returns the proper key" do
+          expect(StitchFix::LogWeasel::Transaction.key).to eq key.downcase
+        end
+      end
+
+      context "does not include a key" do
+        before do
+          StitchFix::LogWeasel::Transaction.id = "00660D68-3BFC-4E44-8DBD-66B0A878686A"
+        end
+
+        it "is nil" do
+          expect(StitchFix::LogWeasel::Transaction.key).to be_nil
+        end
+      end
+    end
+  end
+
   describe ".id=" do
     before do
       StitchFix::LogWeasel::Transaction.id = "1234"
