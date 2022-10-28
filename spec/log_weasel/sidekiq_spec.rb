@@ -23,14 +23,18 @@ describe StitchFix::LogWeasel::Sidekiq do
 
   describe "initialize!" do
     after :each do
-      Sidekiq.client_middleware.clear
-      Sidekiq.server_middleware.clear
+      Sidekiq.configure_client do |sidekiq|
+        sidekiq.client_middleware.clear
+        sidekiq.server_middleware.clear
+      end
     end
 
     it "sets the client middleware" do
       described_class.initialize!
 
-      expect(Sidekiq.client_middleware.map(&:klass)).to contain_exactly(described_class::ClientMiddleware)
+      Sidekiq.configure_client do |sidekiq|
+        expect(sidekiq.client_middleware.map(&:klass)).to contain_exactly(described_class::ClientMiddleware)
+      end
     end
 
     it "sets the server middleware" do
@@ -38,7 +42,9 @@ describe StitchFix::LogWeasel::Sidekiq do
 
       described_class.initialize!
 
-      expect(Sidekiq.server_middleware.map(&:klass)).to contain_exactly(described_class::ServerMiddleware)
+      Sidekiq.configure_client do |sidekiq|
+        expect(sidekiq.server_middleware.map(&:klass)).to contain_exactly(described_class::ServerMiddleware)
+      end
     end
   end
 
