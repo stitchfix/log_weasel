@@ -4,43 +4,7 @@ Instrument Rails and supported 3rd-party libraries (e.g. Resque, Pwwka) with sha
 
 ## JavaScript
 
-### Installation
-Install the Log Weasel JS package with yarn:
-
-```
-yarn add @stitch-fix/log-weasel
-```
-
-### Usage
-
-#### `generateId(appName)`
-
-Use `generateId` to generate correlation ids for xhr requests. These are generally attached to a request in an `x-request-id` header.
-
-##### `appName`
-
-The canonical fixops app name. It's converted to CONSTANT_CASE internally.
-
-##### Example
-
-```js
-import generateId from "@stitch-fix/log-weasel";
-
-// Get the app name from the app's package.json. Some apps 
-// expose this as a gon variable.
-import { name } from '../../package.json';
-
-const url = 'https://my-app.com/api';
-
-const post = (body) => { 
-  fetch(url, {
-    body,
-    headers: {
-      // Every call to generateId will create a unique trace ID
-      'X-Request-Id': generateId(name),
-    },
-  });
-```
+The `@stitch-fix/log-weasel` javascript package has moved to the frontend-monorepo: https://github.com/stitchfix/web-frontend/blob/main/packages/log-weasel/README.md
 
 ## Rails
 
@@ -84,15 +48,15 @@ LogWeasel.configure do |config|
 end
 ```
 
-`config.key`  (default is the Rails `app_name`)  
-A string that will be included in your transaction IDs and is particularly useful in an environment where a unit of work may span multiple applications.  
+`config.key` (default is the Rails `app_name`)
+A string that will be included in your transaction IDs and is particularly useful in an environment where a unit of work may span multiple applications.
 
-`config.disable_delayed_job_tracing` (default is `false`)  
-A boolean that disables Log Weasel appending a `log_weasel_id` parameter in  the payloads of delayed Resque jobs. The default is `false`. 
+`config.disable_delayed_job_tracing` (default is `false`)
+A boolean that disables Log Weasel appending a `log_weasel_id` parameter in the payloads of delayed Resque jobs. The default is `false`.
 
-`config.debug` (default is `false`)  
-A boolean that enables some additional debug logging. The default is `false`. 
- 
+`config.debug` (default is `false`)
+A boolean that enables some additional debug logging. The default is `false`.
+
 Setting these configuration options are optional, but you must call `LogWeasel.configure`.
 
 ### Rack
@@ -101,7 +65,7 @@ Log Weasel provides Rack middleware to create and destroy a transaction ID for e
 
 ### Log Weasel ID From Params
 
-The Log Weasel transaction id can also be passed via query string.  While this should not be necessary for common Stitch Fix engineering use cases, you can include a `logweasel_id` key in the query string and set `LOG_WEASEL_FROM_PARAMS` environment variable in your application via `fixops`.  **Note** this will take precedence over the values passed in the HTTP headers the Log Weasel middleware looks at.
+The Log Weasel transaction id can also be passed via query string. While this should not be necessary for common Stitch Fix engineering use cases, you can include a `logweasel_id` key in the query string and set `LOG_WEASEL_FROM_PARAMS` environment variable in your application via `fixops`. **Note** this will take precedence over the values passed in the HTTP headers the Log Weasel middleware looks at.
 
 ### Resque
 

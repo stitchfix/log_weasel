@@ -8,10 +8,6 @@ module StitchFix
       class << self
         def new(gemspec)
           StitchFix::Y::ReleaseTask.new(gemspec)
-
-          Rake::Task["release"].enhance do
-            Rake.sh "yarn publish"
-          end
         end
       end
     end
