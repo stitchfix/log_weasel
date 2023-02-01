@@ -81,10 +81,6 @@ jobs:
     - run: bundle exec rspec --format RspecJunitFormatter --out /tmp/test-results/rspec.xml
         --format=doc
     - run:
-        name: Run Additional CI Steps
-        command: if [ -e bin/additional-ci-steps ]; then bin/additional-ci-steps;
-          fi
-    - run:
         name: Notify Pager Duty
         command: bundle exec y-notify "#kufak-alerts"
         when: on_fail
@@ -110,10 +106,6 @@ jobs:
     - run: bundle install
     - run: bundle exec rspec --format RspecJunitFormatter --out /tmp/test-results/rspec.xml
         --format=doc
-    - run:
-        name: Run Additional CI Steps
-        command: if [ -e bin/additional-ci-steps ]; then bin/additional-ci-steps;
-          fi
     - run:
         name: Notify Pager Duty
         command: bundle exec y-notify "#kufak-alerts"
@@ -141,10 +133,6 @@ jobs:
     - run: bundle exec rspec --format RspecJunitFormatter --out /tmp/test-results/rspec.xml
         --format=doc
     - run:
-        name: Run Additional CI Steps
-        command: if [ -e bin/additional-ci-steps ]; then bin/additional-ci-steps;
-          fi
-    - run:
         name: Notify Pager Duty
         command: bundle exec y-notify "#kufak-alerts"
         when: on_fail
@@ -170,10 +158,6 @@ jobs:
     - run: bundle install
     - run: bundle exec rspec --format RspecJunitFormatter --out /tmp/test-results/rspec.xml
         --format=doc
-    - run:
-        name: Run Additional CI Steps
-        command: if [ -e bin/additional-ci-steps ]; then bin/additional-ci-steps;
-          fi
     - run:
         name: Notify Pager Duty
         command: bundle exec y-notify "#kufak-alerts"
