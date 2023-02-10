@@ -1,6 +1,6 @@
 # Log Weasel
 
-Instrument Rails and supported 3rd-party libraries (e.g. Resque, Pwwka) with shared transaction IDs to trace execution of a unit of work across applications and application instances.
+Instrument Rails and supported 3rd-party libraries (e.g. Resque, Sidekiq) with shared transaction IDs to trace execution of a unit of work across applications and application instances.
 
 ## JavaScript
 
