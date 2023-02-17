@@ -1,5 +1,4 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-require 'pwwka'
 require 'resque'
 require 'stitch_fix/log_weasel'
 
@@ -13,8 +12,7 @@ describe StitchFix::LogWeasel do
       expect(StitchFix::LogWeasel.config.key).to eq "KEY"
     end
 
-    it "initializes Log Weasel decorators for defined libraries" do
-      expect(StitchFix::LogWeasel::Pwwka).to receive(:initialize!)
+    it 'initializes Log Weasel decorators for defined libraries' do
       expect(StitchFix::LogWeasel::Resque).to receive(:initialize!)
       expect(StitchFix::LogWeasel::ResqueScheduler).to receive(:initialize!)
       expect(StitchFix::LogWeasel::Sidekiq).to receive(:initialize!)

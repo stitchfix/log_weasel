@@ -3,7 +3,6 @@ require 'stitch_fix/log_weasel/logger'
 require 'stitch_fix/log_weasel/airbrake'
 require 'stitch_fix/log_weasel/middleware'
 require 'stitch_fix/log_weasel/resque'
-require 'stitch_fix/log_weasel/pwwka'
 require 'stitch_fix/log_weasel/sidekiq'
 require 'stitch_fix/log_weasel/railtie' if defined? ::Rails::Railtie
 
@@ -33,10 +32,6 @@ module StitchFix
         class << ::Airbrake
           include StitchFix::LogWeasel::Airbrake
         end
-      end
-
-      if defined? ::Pwwka
-        StitchFix::LogWeasel::Pwwka.initialize!
       end
 
       if defined? ::Resque
