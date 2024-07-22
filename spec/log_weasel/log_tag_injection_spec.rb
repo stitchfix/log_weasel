@@ -66,28 +66,28 @@ RSpec.describe StitchFix::LogWeasel::LogTagInjection do
     end
   end
 
-  # context "when disabled" do
-  #   before do
+  context "when disabled" do
+    before do
 
-  #     StitchFix::LogWeasel.configure do |config|
-  #       config.disable_log_tagging = true
-  #     end
-  #   end
+      StitchFix::LogWeasel.configure do |config|
+        config.disable_log_tagging = true
+      end
+    end
 
-  #   after do
-  #     StitchFix::LogWeasel.configure do |config|
-  #       config.disable_log_tagging = false
-  #     end
-  #   end
+    after do
+      StitchFix::LogWeasel.configure do |config|
+        config.disable_log_tagging = false
+      end
+    end
 
-  #   subject(:log_output_json) do
-  #     Rack::MockRequest.new(app).post("http://example.com", env)
-  #     log_output.string
-  #   end
+    subject(:log_output_json) do
+      Rack::MockRequest.new(app).post("http://example.com", env)
+      log_output.string
+    end
 
-  #   it "logs the log weasel key and trace id as log_weasel_trace_id" do
-  #     expect(subject).to match "info message"
-  #     expect(subject).not_to match "trace_origin"
-  #   end
-  # end
+    it "logs the log weasel key and trace id as log_weasel_trace_id" do
+      expect(subject).to match "info message"
+      expect(subject).not_to match "trace_origin"
+    end
+  end
 end

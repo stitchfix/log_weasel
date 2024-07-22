@@ -8,6 +8,8 @@ module StitchFix
         end
 
         def call(env)
+          return @app.call(env) if LogWeasel.config.disable_log_tagging
+
           return @app.call(env) unless @config&.logger.respond_to?(:tagged)
 
           tags = {
