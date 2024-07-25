@@ -6,3 +6,4 @@
 # See https://help.github.com/articles/about-codeowners/ for more details.
 
 * @stitchfix/client-identity-access-management
+* @stitchfix/app-platform
