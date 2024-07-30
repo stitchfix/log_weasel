@@ -4,3 +4,4 @@ pkg/*
 .idea
 Gemfile.lock
 *.log
+spec/internal/log/test.log

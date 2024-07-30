@@ -1,5 +1,6 @@
 require 'stitch_fix/log_weasel/transaction'
 require 'stitch_fix/log_weasel/logger'
+require 'stitch_fix/log_weasel/log_tag_injection'
 require 'stitch_fix/log_weasel/airbrake'
 require 'stitch_fix/log_weasel/middleware'
 require 'stitch_fix/log_weasel/resque'
@@ -9,7 +10,7 @@ require 'stitch_fix/log_weasel/railtie' if defined? ::Rails::Railtie
 module StitchFix
   module LogWeasel
     class Config
-      attr_accessor :key, :disable_delayed_job_tracing, :debug
+      attr_accessor :key, :disable_delayed_job_tracing, :debug, :disable_log_tag_injection
 
       def disable_delayed_job_tracing?
         @disable_delayed_job_tracing ||
