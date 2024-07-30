@@ -70,13 +70,13 @@ RSpec.describe StitchFix::LogWeasel::LogTagInjection do
     before do
 
       StitchFix::LogWeasel.configure do |config|
-        config.disable_log_tagging = true
+        config.disable_log_tag_injection = true
       end
     end
 
     after do
       StitchFix::LogWeasel.configure do |config|
-        config.disable_log_tagging = false
+        config.disable_log_tag_injection = false
       end
     end
 
