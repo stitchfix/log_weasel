@@ -13,9 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{Instrument Rails and Resque with shared transaction IDs so that you trace execution across instances.}
 
   s.add_development_dependency('airbrake')
-  s.add_development_dependency('gemfury')
   s.add_development_dependency('logger')
-  s.add_development_dependency('mocha')
   s.add_development_dependency('rake')
   s.add_development_dependency('resque')
   s.add_development_dependency('resque-scheduler')
