@@ -48,7 +48,7 @@ RSpec.describe StitchFix::LogWeasel::LogTagInjection do
     end
 
     it "logs the log weasel key and trace id as log_weasel_trace_id" do
-      expect(subject).to eq %{[{"trace_origin"=>"log_weasel_trace_id1", "log_weasel_trace_id"=>"log_weasel_trace_id1"}] info message\n}
+      expect(subject).to match(/\[{"trace_origin"\s?=>\s?"log_weasel_trace_id1", "log_weasel_trace_id"\s?=>\s?"log_weasel_trace_id1"}\] info message\n/)
     end
   end
 
