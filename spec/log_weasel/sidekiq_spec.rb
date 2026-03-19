@@ -1,8 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-require 'sidekiq/testing'
+require 'sidekiq'
+
 
 class TestWorker
-  include Sidekiq::Worker
+  include ::Sidekiq::Worker
 
   def perform
   end
@@ -16,7 +17,7 @@ describe StitchFix::LogWeasel::Sidekiq do
   end
 
   around :each do |example|
-    Sidekiq::Testing.fake! do
+    Sidekiq.testing!(:fake) do
       example.run
     end
   end
