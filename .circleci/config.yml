@@ -94,9 +94,9 @@ jobs:
         when: on_fail
     - store_test_results:
         path: "/tmp/test-results"
-  ruby-3_4_9-rails-8_1:
+  ruby-3_4_10-rails-8_1:
     docker:
-    - image: cimg/ruby:3.4.9
+    - image: cimg/ruby:3.4.10
       auth:
         username: "$DOCKERHUB_USERNAME"
         password: "$DOCKERHUB_PASSWORD"
@@ -154,9 +154,9 @@ jobs:
         when: on_fail
     - store_test_results:
         path: "/tmp/test-results"
-  ruby-3_4_9-rails-8_0:
+  ruby-3_4_10-rails-8_0:
     docker:
-    - image: cimg/ruby:3.4.9
+    - image: cimg/ruby:3.4.10
       auth:
         username: "$DOCKERHUB_USERNAME"
         password: "$DOCKERHUB_PASSWORD"
@@ -194,12 +194,12 @@ workflows:
         context: org-global
         requires:
         - ruby-4_0_5-rails-8_1
-        - ruby-3_4_9-rails-8_1
+        - ruby-3_4_10-rails-8_1
         - ruby-4_0_5-rails-8_0
-        - ruby-3_4_9-rails-8_0
+        - ruby-3_4_10-rails-8_0
         filters:
           tags:
-            only: "/^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:(-|\\.)(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$/"
+            only: "/^[0-9]+\\.[0-9]+\\.[0-9]+([-.].+)?$/"
           branches:
             ignore: /.*/
     - generate-and-push-docs:
@@ -208,7 +208,7 @@ workflows:
         - release
         filters:
           tags:
-            only: "/^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:(-|\\.)(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$/"
+            only: "/^[0-9]+\\.[0-9]+\\.[0-9]+([-.].+)?$/"
           branches:
             ignore: /.*/
     - ruby-4_0_5-rails-8_1:
@@ -216,7 +216,7 @@ workflows:
         filters:
           tags:
             only: &1 /.*/
-    - ruby-3_4_9-rails-8_1:
+    - ruby-3_4_10-rails-8_1:
         context: org-global
         filters:
           tags:
@@ -226,7 +226,7 @@ workflows:
         filters:
           tags:
             only: *1
-    - ruby-3_4_9-rails-8_0:
+    - ruby-3_4_10-rails-8_0:
         context: org-global
         filters:
           tags:
@@ -237,9 +237,9 @@ workflows:
     jobs:
     - ruby-4_0_5-rails-8_1:
         context: org-global
-    - ruby-3_4_9-rails-8_1:
+    - ruby-3_4_10-rails-8_1:
         context: org-global
     - ruby-4_0_5-rails-8_0:
         context: org-global
-    - ruby-3_4_9-rails-8_0:
+    - ruby-3_4_10-rails-8_0:
         context: org-global
