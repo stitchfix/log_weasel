@@ -5,3 +5,4 @@ source 'https://stitchfix01.jfrog.io/stitchfix01/api/gems/eng-gems/'
 gemspec
 
 gem 'activesupport', '~> 8.0.0'
+gem 'json', '~> 2.0'
