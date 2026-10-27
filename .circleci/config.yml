@@ -27,7 +27,7 @@ orbs:
 jobs:
   generate-and-push-docs:
     docker:
-    - image: cimg/ruby:4.0.7
+    - image: cimg/ruby:4.0.9
       auth:
         username: "$DOCKERHUB_USERNAME"
         password: "$DOCKERHUB_PASSWORD"
@@ -49,7 +49,7 @@ jobs:
           docs:push; fi
   release:
     docker:
-    - image: cimg/ruby:4.0.7
+    - image: cimg/ruby:4.0.9
       auth:
         username: "$DOCKERHUB_USERNAME"
         password: "$DOCKERHUB_PASSWORD"
@@ -64,9 +64,9 @@ jobs:
     - run:
         name: Build/release gem to artifactory
         command: bundle exec rake push_artifactory
-  ruby-4_0_7-rails-8_1:
+  ruby-4_0_9-rails-8_1:
     docker:
-    - image: cimg/ruby:4.0.7
+    - image: cimg/ruby:4.0.9
       auth:
         username: "$DOCKERHUB_USERNAME"
         password: "$DOCKERHUB_PASSWORD"
@@ -94,9 +94,9 @@ jobs:
         when: on_fail
     - store_test_results:
         path: "/tmp/test-results"
-  ruby-3_4_11-rails-8_1:
+  ruby-3_4_12-rails-8_1:
     docker:
-    - image: cimg/ruby:3.4.11
+    - image: cimg/ruby:3.4.12
       auth:
         username: "$DOCKERHUB_USERNAME"
         password: "$DOCKERHUB_PASSWORD"
@@ -124,9 +124,9 @@ jobs:
         when: on_fail
     - store_test_results:
         path: "/tmp/test-results"
-  ruby-4_0_7-rails-8_0:
+  ruby-4_0_9-rails-8_0:
     docker:
-    - image: cimg/ruby:4.0.7
+    - image: cimg/ruby:4.0.9
       auth:
         username: "$DOCKERHUB_USERNAME"
         password: "$DOCKERHUB_PASSWORD"
@@ -154,9 +154,9 @@ jobs:
         when: on_fail
     - store_test_results:
         path: "/tmp/test-results"
-  ruby-3_4_11-rails-8_0:
+  ruby-3_4_12-rails-8_0:
     docker:
-    - image: cimg/ruby:3.4.11
+    - image: cimg/ruby:3.4.12
       auth:
         username: "$DOCKERHUB_USERNAME"
         password: "$DOCKERHUB_PASSWORD"
@@ -193,10 +193,10 @@ workflows:
     - release:
         context: org-global
         requires:
-        - ruby-4_0_7-rails-8_1
-        - ruby-3_4_11-rails-8_1
-        - ruby-4_0_7-rails-8_0
-        - ruby-3_4_11-rails-8_0
+        - ruby-4_0_9-rails-8_1
+        - ruby-3_4_12-rails-8_1
+        - ruby-4_0_9-rails-8_0
+        - ruby-3_4_12-rails-8_0
         filters:
           tags:
             only: "/^[0-9]+\\.[0-9]+\\.[0-9]+([-.].+)?$/"
@@ -211,22 +211,22 @@ workflows:
             only: "/^[0-9]+\\.[0-9]+\\.[0-9]+([-.].+)?$/"
           branches:
             ignore: /.*/
-    - ruby-4_0_7-rails-8_1:
+    - ruby-4_0_9-rails-8_1:
         context: org-global
         filters:
           tags:
             only: &1 /.*/
-    - ruby-3_4_11-rails-8_1:
+    - ruby-3_4_12-rails-8_1:
         context: org-global
         filters:
           tags:
             only: *1
-    - ruby-4_0_7-rails-8_0:
+    - ruby-4_0_9-rails-8_0:
         context: org-global
         filters:
           tags:
             only: *1
-    - ruby-3_4_11-rails-8_0:
+    - ruby-3_4_12-rails-8_0:
         context: org-global
         filters:
           tags:
@@ -235,11 +235,11 @@ workflows:
     when:
        equal: [ "schedule", << pipeline.parameters.GHA_Event >> ]
     jobs:
-    - ruby-4_0_7-rails-8_1:
+    - ruby-4_0_9-rails-8_1:
         context: org-global
-    - ruby-3_4_11-rails-8_1:
+    - ruby-3_4_12-rails-8_1:
         context: org-global
-    - ruby-4_0_7-rails-8_0:
+    - ruby-4_0_9-rails-8_0:
         context: org-global
-    - ruby-3_4_11-rails-8_0:
+    - ruby-3_4_12-rails-8_0:
         context: org-global
